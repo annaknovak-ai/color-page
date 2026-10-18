@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>צבע רקע רנדומלי</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <style>
     body {
       margin: 0;
@@ -38,15 +39,45 @@
   <button id="changeColorBtn">החלף צבע רקע</button>
 
   <script>
+    const colors = [
+      { name: 'אדום', code: '#E53935' },
+      { name: 'כתום', code: '#FB8C00' },
+      { name: 'צהוב', code: '#FDD835' },
+      { name: 'ירוק', code: '#43A047' },
+      { name: 'ירוק בהיר', code: '#9CCC65' },
+      { name: 'זית', code: '#808000' },
+      { name: 'טורקיז', code: '#26C6DA' },
+      { name: 'תכלת', code: '#81D4FA' },
+      { name: 'כחול', code: '#1E88E5' },
+      { name: 'כחול כהה', code: '#1A237E' },
+      { name: 'סגול', code: '#8E24AA' },
+      { name: 'לילך', code: '#C8A2C8' },
+      { name: 'ורוד', code: '#F48FB1' },
+      { name: 'פוקסיה', code: '#D81B60' },
+      { name: 'בורדו', code: '#800020' },
+      { name: 'חום', code: '#795548' },
+      { name: 'בז׳', code: '#F5E6C8' },
+      { name: 'זהב', code: '#FFC107' },
+      { name: 'אפור', code: '#9E9E9E' },
+      { name: 'שחור', code: '#000000' },
+      { name: 'לבן', code: '#FFFFFF' }
+    ];
+
+    let currentIndex = -1;
+
     function getRandomColor() {
-      const randomNumber = Math.floor(Math.random() * 0x1000000);
-      return '#' + randomNumber.toString(16).padStart(6, '0').toUpperCase();
+      let index;
+      do {
+        index = Math.floor(Math.random() * colors.length);
+      } while (index === currentIndex);
+      currentIndex = index;
+      return colors[index];
     }
 
     document.getElementById('changeColorBtn').addEventListener('click', function () {
       const color = getRandomColor();
-      document.body.style.backgroundColor = color;
-      this.textContent = color;
+      document.body.style.backgroundColor = color.code;
+      this.textContent = color.name;
     });
   </script>
 </body>
